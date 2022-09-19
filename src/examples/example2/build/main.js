@@ -1,11 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ([
-/* 0 */
-() => {
-  const sum = __webpack_require__(1)
-
-  console.log(sum(6, 9));
-},
+/* 0 */,
 /* 1 */
 /***/ ((module) => {
 
@@ -44,7 +39,11 @@ module.exports = (a, b) => {
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-__webpack_require__(0);
+(() => {
+const sum = __webpack_require__(1)
+
+console.log(sum(6, 9));
+})();
 
 /******/ })()
 ;
