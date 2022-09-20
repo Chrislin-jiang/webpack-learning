@@ -1,3 +1,12 @@
+/**
+ * 通过调试运行时代码分析得出
+
+-   1 -> `__webpack_modules__`：是一个数组，存放所有加载到的模块。在此示例中，`__webpack_modules__[0]` 是空的，`__webpack_modules__[1]` 是 sum.js 模块；
+-   2 -> `__webpack_module_cache__`：是一个对象，对模块执行结果进行缓存，这样能够保证每个模块只被执行一次；
+-   3 -> `__webpack_require__`：是一个函数，作用是加载模块，如果模块第一次被加载，则通过 `__webpack_modules__[moduleId]` 匹配上对应的模块，并进行缓存；如果是已加载的模块，则直接从 `__webpack_module_cache__[moduleId]` 取；
+-   4 -> `__webpack_exports__`：是一个对象，存放导出的内容；
+-   5 -> IIFE：加载入口模块
+ */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ([
 /* 0 */,
