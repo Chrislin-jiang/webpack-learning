@@ -126,9 +126,6 @@
     /* harmony import */
     var _sum__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
     // const sum = require('./sum')
-
-
-
     console.log((0, _sum__WEBPACK_IMPORTED_MODULE_0__["default"])(6, 9));
     console.log("test", _sum__WEBPACK_IMPORTED_MODULE_0__.test);
     console.log("s", _sum__WEBPACK_IMPORTED_MODULE_0__)
