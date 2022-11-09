@@ -27,8 +27,10 @@
       /* harmony export */
       __webpack_require__.d(__webpack_exports__, {
         /* harmony export */
+        // (0, _sum__WEBPACK_IMPORTED_MODULE_0__["default"])(6, 9) 执行这个，调用的是 getter
         "default": () => (__WEBPACK_DEFAULT_EXPORT__),
         /* harmony export */
+        // _sum__WEBPACK_IMPORTED_MODULE_0__.test
         "test": () => ( /* binding */ test)
         /* harmony export */
       });
