@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function build1() {
   return webpack({
@@ -8,12 +9,55 @@ function build1() {
       test: './test.js'
     },
     output: {
-      path: path.resolve(__dirname, 'build-source-map'),
+      path: path.resolve(__dirname, 'build-eval-cheap-module-source-map'),
       filename: '[name].js',
       clean: true
     },
+    module:{
+      rules:[
+        {
+          test: /\.(css)$/,
+          use: [
+            {
+              // loader: MiniCssExtractPlugin.loader
+              loader: 'style-loader'
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                sourceMap: true,
+                modules: false
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            // {
+            //   loader: 'less-loader',
+            //   options: {
+            //     sourceMap: true,
+            //     lessOptions: {
+            //       javascriptEnabled: true
+            //     }
+            //   }
+            // }
+          ]
+        }
+      ]
+    },
+    plugins: [
+      // new MiniCssExtractPlugin({
+      //   filename: '[name].css',
+      //   // chunkFilename: cssPath,
+      //   ignoreOrder: false // Enable to remove warnings about conflicting order
+      // })
+    ],
     mode: 'none',
-    devtool: 'source-map'
+    devtool: 'eval-cheap-module-source-map'
   })
 }
 
