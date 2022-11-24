@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","mappings":";;AAAA,wB","sources":["webpack:///./index.js"],"sourcesContent":["console.log('index---');"],"names":[],"sourceRoot":""}
+{"version":3,"file":"index.js","mappings":";;;;AAAA,8FAAqB;AACrB","sources":["webpack:///./index.js"],"sourcesContent":["import('./index.css')\r\nconsole.log('index---');"],"names":[],"sourceRoot":""}
