@@ -9,7 +9,7 @@ function build1() {
       test: './test.js'
     },
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'build-eval-source-map'),
       filename: '[name].js',
       clean: true
     },
@@ -17,8 +17,8 @@ function build1() {
       rules: [{
         test: /\.(css)$/,
         use: [{
-            loader: MiniCssExtractPlugin.loader
-            // loader: 'style-loader'
+            // loader: MiniCssExtractPlugin.loader
+            loader: 'style-loader'
           },
           {
             loader: 'css-loader',
@@ -53,25 +53,25 @@ function build1() {
             maxSize: 1 * 1024
           }
         },
-        generator: {
-          // publicPath:`../${buildTargetDir}/`,
-          filename: '[contenthash:10].[name][ext]'
-        },
-        loader: 'image-webpack-loader',
-        options: {
-          disable: false
-        },
+        // generator: {
+        //   // publicPath:`../${buildTargetDir}/`,
+        //   filename: '[contenthash:10].[name][ext]'
+        // },
+        // loader: 'image-webpack-loader',
+        // options: {
+        //   disable: false
+        // },
       }, ]
     },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        // chunkFilename: cssPath,
-        ignoreOrder: false // Enable to remove warnings about conflicting order
-      })
-    ],
+    // plugins: [
+    //   new MiniCssExtractPlugin({
+    //     filename: '[name].css',
+    //     // chunkFilename: cssPath,
+    //     ignoreOrder: false // Enable to remove warnings about conflicting order
+    //   })
+    // ],
     mode: 'none',
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     optimization: {
       runtimeChunk: {
         name: 'runtime~single'
