@@ -1,5 +1,6 @@
 {
   "scripts": {
-    "dev": "npx webpack-dev-server"
+    "dev": "npx webpack-dev-server",
+    "build:oss": "webpack "
   }
 }

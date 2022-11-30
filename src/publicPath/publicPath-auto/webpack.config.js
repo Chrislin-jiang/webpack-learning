@@ -5,10 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: './src/index.mjs',
+    index: './src/index.js',
   },
   output: {
-    path: path.resolve(__dirname, 'build3-test'),
+    path: path.resolve(__dirname, 'build'),
     filename: '[name].js',
     clean: true
   },
@@ -33,7 +33,7 @@ module.exports = {
       ignoreOrder: false
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      // template: './src/index.html'
     })
   ],
   mode: 'development',
@@ -42,7 +42,7 @@ module.exports = {
       name: 'runtime~single'
     }
   },
-  // devtool: 'source-map',
+  devtool: 'source-map',
   devServer: {
     // open: true,
     hot: true
