@@ -176,6 +176,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+            // installedChunks 存放 已经加载了 和 正在加载 的 chunks
+            // 有几种取值
+            // 0                          -> 已经加载了的 chunk
+            // [resolve, reject, Promise] -> 正在加载的 chunk
+            // undefined                  -> chunk 没有加载
+            // null                       -> chunk preloaded/prefetched
 /******/ 		var installedChunks = {
 /******/ 			0: 0
 /******/ 		};
@@ -191,12 +197,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 					} else {
 /******/ 						if(true) { // all chunks have JS
 /******/ 							// setup Promise in chunk cache
+                      // installedChunkData 先赋值为 [resolve, reject]
+                      // 注意这里的 resolve，有用，后面在成功加载到 1.js 后就是执行这个 resolve()，改变了 promise 的状态
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
+                      // installedChunkData -> [resolve, reject, Promise]
+                      // 这个时候 promise 实例的状态为 pending
 /******/ 							promises.push(installedChunkData[2] = promise);
 /******/ 		
 /******/ 							// start chunk loading
+                      // 得到需要加载  chunk 的 url
 /******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
 /******/ 							// create error before stack unwound to get useful stacktrace later
+                      // 进行错误处理 -> 未成功加载到某个 chunk
 /******/ 							var error = new Error();
 /******/ 							var loadingEnded = (event) => {
 /******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
@@ -213,6 +225,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 									}
 /******/ 								}
 /******/ 							};
+                      // 调用 __webpack_require__.l
 /******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
 /******/ 						} else installedChunks[chunkId] = 0;
 /******/ 					}
@@ -266,8 +279,21 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
+
+console.log("test", _test__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
 const loadSum = () => {
-  __webpack_require__.e(/* import() */ 1).then(__webpack_require__.bind(__webpack_require__, 2)).then(module => {
+  // __webpack_require__.e(/* import() */ 1).then(__webpack_require__.bind(__webpack_require__, 2)).then(module => {
+  //   console.log(module.default(6, 9))
+  // })
+  const p1 = __webpack_require__.e(/* import() */ 1);
+  console.log("p1", p1);
+  const fn = __webpack_require__.bind(__webpack_require__, 2)
+  console.log("fn", fn);
+  // p1.then(fn) 这个时候才去执行 fn，拿到返回的 module.export，并且把这个结果再封装成一个 Promise 实例
+  const p2 = p1.then(fn);
+  console.log("p2", p2);
+  p2.then(module => {
     console.log(module.default(6, 9))
   })
 }
@@ -275,7 +301,6 @@ const loadSum = () => {
 const btn = document.getElementById("btn");
 btn.addEventListener("click", loadSum, false);
 
-console.log("test", _test__WEBPACK_IMPORTED_MODULE_0__["default"]);
 })();
 
 /******/ })()
