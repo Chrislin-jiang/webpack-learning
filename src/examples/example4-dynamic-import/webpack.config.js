@@ -2,8 +2,13 @@ const path = require('path')
 module.exports = {
   entry: './index.js',
   output: {
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build-runtimeChunk')
   },
-  mode: 'none'
+  mode: 'none',
+  // optimization: {
+  //   runtimeChunk: {
+  //     name: 'runtime~single',
+  //   },
+  // },
 }
 // npx webpack --entry ./index.js --output-path build --mode=none

@@ -1,5 +1,18 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({});
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ([
+/* 0 */,
+/* 1 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ('test');
+
+/***/ })
+/******/ 	]);
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -248,26 +261,22 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _test__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
-// __webpack_require__.e(/* import() */ 1).then(__webpack_require__.bind(__webpack_require__, 1)).then(module => {
-//   console.log(module.default(6, 9))
-// })
+const loadSum = () => {
+  __webpack_require__.e(/* import() */ 1).then(__webpack_require__.bind(__webpack_require__, 2)).then(module => {
+    console.log(module.default(6, 9))
+  })
+}
 
-// __webpack_require__.e(/* import() */ 1)
-//   .then(__webpack_require__.bind(__webpack_require__, 1))
-//   .then(module => {
-//   console.log(module.default(6, 9))
-// })
-const p1 = __webpack_require__.e(/* import() */ 1);
-console.log("p1", p1);
-const fn = __webpack_require__.bind(__webpack_require__, 1)
-console.log("fn", fn);
-console.log("typeof fn", typeof fn);
-// p1.then(fn) 这个时候才去执行 fn，拿到返回的 module.export，并且把这个结果再封装成一个 Promise 实例
-const p2 = p1.then(fn);
-console.log("p2", p2);
-p2.then(module => {
-  console.log(module.default(6, 9))
-})
+const btn = document.getElementById("btn");
+btn.addEventListener("click", loadSum, false);
+
+console.log("test", _test__WEBPACK_IMPORTED_MODULE_0__["default"]);
+})();
+
 /******/ })()
 ;
