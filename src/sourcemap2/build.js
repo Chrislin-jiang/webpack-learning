@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 function build1() {
   return webpack({
@@ -9,7 +11,7 @@ function build1() {
       test: './test.js'
     },
     output: {
-      path: path.resolve(__dirname, 'build-eval-source-map'),
+      path: path.resolve(__dirname, 'build-eval-cheap-module-source-map'),
       filename: '[name].js',
       clean: true
     },
@@ -17,8 +19,8 @@ function build1() {
       rules: [{
         test: /\.(css)$/,
         use: [{
-            // loader: MiniCssExtractPlugin.loader
-            loader: 'style-loader'
+            loader: MiniCssExtractPlugin.loader
+            // loader: 'style-loader'
           },
           {
             loader: 'css-loader',
@@ -63,19 +65,27 @@ function build1() {
         // },
       }, ]
     },
-    // plugins: [
-    //   new MiniCssExtractPlugin({
-    //     filename: '[name].css',
-    //     // chunkFilename: cssPath,
-    //     ignoreOrder: false // Enable to remove warnings about conflicting order
-    //   })
-    // ],
-    mode: 'none',
-    devtool: 'eval-source-map',
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash:8].css',
+        // chunkFilename: cssPath,
+        ignoreOrder: false // Enable to remove warnings about conflicting order
+      }),
+      new HtmlWebpackPlugin({
+        // template: './src/index.html'
+      })
+    ],
+    mode: 'development',
+    devtool: 'source-map',
+    // devtool: 'eval-cheap-module-source-map',
     optimization: {
       runtimeChunk: {
         name: 'runtime~single'
       }
+    },
+    devServer: {
+      // open: true,
+      hot: true
     }
   })
 }
