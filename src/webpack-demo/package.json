@@ -1,0 +1,12 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "debug": "node --inspect-brk=9339 ../../node_modules/.bin/webpack --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
